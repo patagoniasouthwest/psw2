@@ -1,0 +1,302 @@
+[
+  {
+    "id": "cuchillo-trenzado-bicolor",
+    "cat": "cuchillos",
+    "name": "Cuchillo criollo trenzado bicolor",
+    "desc": "Mango de cuero crudo trenzado en dos tonos, con apliques de alpaca.",
+    "longDesc": "Cuchillo de hoja inoxidable y mango de cuero crudo trenzado a mano en dos tonos. Los apliques de alpaca cierran el mango en ambos extremos.\n\nEs una pieza de taller: el trenzado y las terminaciones pueden variar levemente de una unidad a otra.",
+    "price": 59500,
+    "wholesale": 34200,
+    "stock": 50,
+    "img": "./assets/cuchillo-trenzado-bicolor.jpg",
+    "images": [
+      "./assets/cuchillo-trenzado-bicolor.jpg"
+    ],
+    "specs": [
+      [
+        "Hoja",
+        "Acero inoxidable"
+      ],
+      [
+        "Mango",
+        "Cuero crudo trenzado en dos tonos"
+      ],
+      [
+        "Punteras",
+        "Alpaca"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ],
+      [
+        "Cuidado",
+        "Secar después de usar y no humedecer cabo."
+      ]
+    ]
+  },
+  {
+    "id": "cuchillo-trenzado-claro",
+    "cat": "cuchillos",
+    "name": "Cuchillo criollo trenzado claro",
+    "desc": "Mango de cuero crudo claro, trenzado a mano y terminado con alpaca.",
+    "longDesc": "Cuchillo con hoja de acero inoxidable y mango de cuero crudo claro, trenzado a mano. Las punteras de alpaca cierran el mango y acompañan el tono del cuero.\n\nCada unidad se trabaja de forma individual, por lo que el trenzado puede variar levemente.",
+    "price": 62000,
+    "wholesale": 33800,
+    "stock": 50,
+    "img": "./assets/cuchillo-trenzado-claro.jpg",
+    "images": [
+      "./assets/cuchillo-trenzado-claro.jpg"
+    ],
+    "specs": [
+      [
+        "Hoja",
+        "Acero inoxidable"
+      ],
+      [
+        "Mango",
+        "Cuero crudo claro trenzado"
+      ],
+      [
+        "Punteras",
+        "Alpaca"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ],
+      [
+        "Cuidado",
+        "Secar después de usar y no humedecer prolongadamente."
+      ]
+    ]
+  },
+  {
+    "id": "cuchillo-casquillo",
+    "cat": "cuchillos",
+    "name": "Cuchillo criollo cabo de bala 7.62",
+    "desc": "Mango de casquillo de bala legítimo calibre 7.62 y hoja inoxidable.",
+    "longDesc": "Cuchillo de colección con hoja inoxidable y un mango distinto: un casquillo de bala legítimo trabajado como empuñadura. Una pieza con carácter, pensada para quien busca algo fuera de lo común.",
+    "price": 57100,
+    "wholesale": 25900,
+    "stock": 50,
+    "img": "./assets/cuchillo-casquillo.jpg",
+    "images": [
+      "./assets/cuchillo-casquillo.jpg"
+    ],
+    "specs": [
+      [
+        "Hoja",
+        "Acero inoxidable"
+      ],
+      [
+        "Mango",
+        "Casquillo de bala legítimo, calibre 7.62"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ],
+      [
+        "Cuidado",
+        "Mantenerlo en un lugar limpio y seco."
+      ]
+    ]
+  },
+  {
+    "id": "mate-cuero-bordo",
+    "cat": "mates",
+    "name": "Mate imperial bordó con virola de alpaca",
+    "desc": "Mate de cuero bordó con virola de alpaca cincelada a mano.",
+    "longDesc": "Mate de cuero bordó con virola de alpaca cincelada a mano.\n\nLos diseños de virola pueden variar.",
+    "price": 38000,
+    "wholesale": 24200,
+    "stock": 50,
+    "img": "./assets/mate-cuero-bordo.jpg",
+    "images": [
+      "./assets/mate-cuero-bordo.jpg"
+    ],
+    "specs": [
+      [
+        "Cuerpo",
+        "Cuero legítimo"
+      ],
+      [
+        "Color",
+        "Bordó"
+      ],
+      [
+        "Interior",
+        "Calabaza entrerriana"
+      ],
+      [
+        "Virola",
+        "Alpaca grabada"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ]
+  },
+  {
+    "id": "mate-cuero-negro",
+    "cat": "mates",
+    "name": "Mate imperial negro con virola de alpaca",
+    "desc": "Mate de cuero negro con virola de alpaca cincelada a mano.",
+    "longDesc": "Mate de cuero negro con virola de alpaca cincelada a mano.\n\nLos diseños de virola pueden variar.",
+    "price": 38000,
+    "wholesale": 24200,
+    "stock": 50,
+    "img": "./assets/mate-cuero-negro.jpg",
+    "images": [
+      "./assets/mate-cuero-negro.jpg"
+    ],
+    "specs": [
+      [
+        "Cuerpo",
+        "Cuero oscuro"
+      ],
+      [
+        "Color",
+        "Negro"
+      ],
+      [
+        "Interior",
+        "Calabaza entrerriana"
+      ],
+      [
+        "Virola",
+        "Alpaca grabada"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ]
+  },
+  {
+    "id": "mate-calabaza-cuero",
+    "cat": "mates",
+    "name": "Mate rústico con base de cuero crudo",
+    "desc": "Boca ancha, terminación natural y base de cuero cosida con tientos.",
+    "longDesc": "Mate de terminación natural y boca ancha, abrazado por una base de cuero. Una pieza sencilla y rústica, de las que se usan todos los días y duran toda la vida.",
+    "price": 31000,
+    "wholesale": 20200,
+    "stock": 50,
+    "img": "./assets/mate-calabaza-cuero.jpg",
+    "images": [
+      "./assets/mate-calabaza-cuero.jpg"
+    ],
+    "specs": [
+      [
+        "Boca",
+        "Ancha"
+      ],
+      [
+        "Terminación",
+        "Natural"
+      ],
+      [
+        "Base",
+        "Cuero crudo"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ]
+  },
+  {
+    "id": "bombilla-cincelada",
+    "cat": "bombillas",
+    "name": "Bombilla cincelada de pico plano",
+    "desc": "Bombilla de alpaca pulida y cincelada. Boquilla de bronce. Filtro cuchara. Soldadura de plata (30%).",
+    "longDesc": "Diseñada para resistir el uso diario e intensivo sin perder su integridad. La combinación de alpaca y bronce evita que la pieza se deforme o transfiera el calor a los labios.",
+    "price": 38500,
+    "wholesale": 22199,
+    "stock": 50,
+    "img": "./assets/bombilla-cincelada.jpg",
+    "images": [
+      "./assets/bombilla-cincelada.jpg",
+      "./assets/bombillas-par.jpg",
+      "./assets/bombilla-detalle.jpg"
+    ],
+    "specs": [
+      [
+        "Caño",
+        "Alpaca cincelada"
+      ],
+      [
+        "Pico",
+        "Plano de bronce"
+      ],
+      [
+        "Filtro",
+        "Tipo cuchara"
+      ],
+      [
+        "Terminación",
+        "Pulido"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ],
+    "archived": true
+  },
+  {
+    "id": "mate-algarrobo",
+    "cat": "mates",
+    "name": "Mate ranchero de algarrobo",
+    "desc": "Mate ranchero de algarrobo, hecho a mano en la Patagonia.",
+    "longDesc": "Mate ranchero tallado en madera de algarrobo. Cada pieza es única: las vetas y el tono cambian de una a otra.",
+    "price": null,
+    "wholesale": 17900,
+    "stock": 50,
+    "img": "./assets/ranchero-algarrobo.jpg",
+    "images": [
+      "./assets/ranchero-algarrobo.jpg",
+      "./assets/ranchero-algarrobo-2.jpg"
+    ],
+    "specs": [
+      [
+        "Material",
+        "Algarrobo"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ]
+  },
+  {
+    "id": "mate-algarrobo-pintado",
+    "cat": "mates",
+    "name": "Mate ranchero de algarrobo pintado",
+    "desc": "Mate ranchero de algarrobo pintado a mano, con el Sol de Mayo y franjas celestes y blancas.",
+    "longDesc": "Mate ranchero tallado en madera de algarrobo y pintado a mano con el Sol de Mayo y las franjas celestes y blancas. Cada pieza es única.",
+    "price": null,
+    "wholesale": 23900,
+    "stock": 50,
+    "img": "./assets/ranchero-algarrobo-pintado.jpg",
+    "images": [
+      "./assets/ranchero-algarrobo-pintado.jpg"
+    ],
+    "specs": [
+      [
+        "Material",
+        "Algarrobo"
+      ],
+      [
+        "Terminación",
+        "Pintado a mano"
+      ],
+      [
+        "Hechura",
+        "Artesanal, en la Patagonia"
+      ]
+    ]
+  }
+]
