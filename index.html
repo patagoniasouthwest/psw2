@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patagonia Southwest | Venta mayorista de cuchillos, mates y bombillas</title>
+  <meta name="description" content="Selección de cuchillos criollos, mates de cuero y alpaca y bombillas cinceladas de la Patagonia. Venta mayorista para comercios, desde 10 unidades.">
+  <meta name="theme-color" content="#14171A">
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:    '#14171A', // negro mate
+            slate9: '#1C2024', // pizarra profunda
+            slate8: '#252A2F',
+            slate7: '#30363C',
+            slate5: '#6F7881',
+            slate3: '#AEB5BB',
+            hueso:  '#ECE6DA',
+            cuero:  '#B07D4F', // cuero tostado
+            cuerol: '#CDA06A',
+            madera: '#8A5A35'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans:  ['Manrope', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #14171A; color: #ECE6DA; }
+
+    /* Transición de vistas */
+    @keyframes viewIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .view-enter { animation: viewIn .45s ease both; }
+
+
+    /* Toast */
+    #toast { opacity: 0; transform: translate(-50%, 12px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+    #toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+
+    :focus-visible { outline: 2px solid #CDA06A; outline-offset: 3px; }
+    .no-scroll { overflow: hidden; }
+
+    /* Encuadre de fotos: llenan el marco; si el recorte sería grande pasan a "contain" sobre su propio fondo desenfocado */
+    .fit-frame { position: relative; overflow: hidden; background: #252A2F; }
+    .fit-frame .fit-bg { display: none; }
+    .fit-frame.is-contain .fit-bg { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: blur(28px) saturate(1.1); transform: scale(1.25); opacity: .5; }
+    .fit-frame .fit-main { position: relative; }
+    .fit-frame.is-contain .fit-main { object-fit: contain; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .view-enter { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-ink/70 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2 sm:px-6 sm:py-3">
+      <a href="#/comercios" class="flex items-center gap-3" aria-label="Patagonia Southwest, ir al inicio">
+        <img src="./assets/logo.png" alt="Patagonia Southwest" class="h-9 w-9 rounded-full object-cover bg-white sm:h-11 sm:w-11">
+        <span class="hidden font-serif text-xl font-semibold tracking-wide sm:inline">Patagonia Southwest</span>
+      </a>
+
+      <nav class="flex justify-end gap-0 text-xs font-medium sm:gap-1 sm:text-sm" aria-label="Principal">
+        <a href="#/comercios" data-nav="comercios" class="rounded-full px-3 py-1.5 text-slate3 transition hover:text-hueso sm:px-4 sm:py-2">Catálogo mayorista</a>
+        <a href="#/historia"  data-nav="historia"  class="rounded-full px-3 py-1.5 text-slate3 transition hover:text-hueso sm:px-4 sm:py-2">Sobre nosotros</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <div id="draft-banner" class="hidden border-b border-cuero/40 bg-cuero/15 px-4 py-2 text-center text-sm text-cuerol">
+      Estás viendo cambios sin publicar (solo se ven en este navegador).
+      <a href="#/admin" class="font-bold underline underline-offset-4">Ir al panel</a>
+    </div>
+
+    <!-- ========== VISTA B2B: COMERCIOS ========== -->
+    <section data-view="comercios" class="hidden">
+      <div class="relative overflow-hidden border-b border-white/10 bg-gradient-to-b from-ink to-slate9">
+        <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 pb-4 pt-20 sm:px-6 sm:pb-6 sm:pt-24 lg:grid-cols-[1fr_260px] lg:gap-12">
+          <div>
+            <h1 class="font-serif text-4xl font-semibold leading-[1.05] sm:text-5xl">Sumá exclusividad artesanal a tu local</h1>
+            <p class="mt-4 max-w-xl text-base leading-relaxed text-hueso/80">Cuchillos criollos, mates y bombillas de la Patagonia. A partir de 10 unidades, con envío por expreso.</p>
+            <button type="button" data-action="scroll-b2b" class="mt-6 rounded-full bg-cuero px-7 py-3.5 text-sm font-bold text-ink transition hover:bg-cuerol">Ver catálogo mayorista</button>
+          </div>
+          <figure class="mx-auto w-full max-w-[260px]">
+            <img src="./assets/cuchillo-trenzado-claro.jpg" alt="Cuchillo criollo trenzado claro, con mango de cuero crudo trenzado a mano y punteras de alpaca"
+                 class="aspect-[4/5] w-full rounded-2xl object-cover object-center shadow-xl ring-1 ring-white/10">
+            <figcaption class="mt-3 text-center text-xs text-slate3">Cuchillo criollo trenzado claro · Hecho a mano</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6">
+
+        <!-- Catálogo mayorista -->      <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+
+        <!-- Catálogo mayorista -->
+        <div id="wholesale" class="mt-4 scroll-mt-28">
+          <div class="mt-8 text-center">
+            <h2 id="wholesale-title" tabindex="-1" class="font-serif text-3xl font-semibold outline-none sm:text-4xl">Catálogo mayorista</h2>
+            <p class="mx-auto mt-2 max-w-2xl text-slate3">A partir de 10 unidades. Según la cantidad de compra, más ahorro: descuentos por volumen desde 20 unidades y por transferencia. El envío por expreso lo coordinamos por WhatsApp.</p>
+          </div>
+          <div class="mt-5 flex flex-col items-center gap-1 rounded-2xl border border-cuero/40 bg-cuero/10 px-4 py-3 text-center sm:mt-6 sm:flex-row sm:justify-center sm:gap-4 sm:px-6 sm:py-5">
+            <span class="font-serif text-lg font-semibold text-cuerol sm:text-2xl">78 comercios confían en nosotros</span>
+            <span class="hidden text-sm text-slate3 sm:inline">Comercios de todo el país que ya trabajan con nuestras piezas.</span>
+          </div>
+          <div id="wterms" class="mt-6"></div>
+          <div id="wholesale-grid" class="mt-8"></div>
+
+          <!-- Barra de pedido: aparece solo cuando hay unidades cargadas -->
+          <div id="wbar" class="sticky bottom-2 z-30 mt-10 hidden flex-col gap-2 rounded-2xl border border-white/15 bg-ink/95 px-3 py-2 shadow-2xl backdrop-blur sm:bottom-3 sm:px-5 sm:py-3">
+            <div class="flex items-center gap-4">
+              <p id="wbar-text" class="min-w-0 flex-1 truncate text-sm font-bold" aria-live="polite"></p>
+              <div class="hidden h-1.5 w-28 shrink-0 overflow-hidden rounded-full bg-white/10 sm:block">
+                <div id="wbar-progress" class="h-full rounded-full bg-cuero transition-all duration-300" style="width:0%"></div>
+              </div>
+              <button type="button" data-open-cart class="shrink-0 rounded-full border border-cuero px-4 py-2.5 text-sm font-bold text-cuerol transition hover:bg-cuero hover:text-ink">Carrito</button>
+              <button id="wbar-send" type="button" disabled
+                      class="shrink-0 rounded-full bg-cuero px-5 py-2.5 text-center text-sm font-bold text-ink transition hover:bg-cuerol disabled:cursor-not-allowed disabled:opacity-50">
+                <span class="sm:hidden">Pedir</span><span class="hidden sm:inline">Armar pedido por WhatsApp</span>
+              </button>
+            </div>
+            <div id="wbar-lines" class="hidden flex-wrap gap-2 text-xs text-hueso sm:flex"></div>
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-3 md:grid-cols-3 md:gap-4 sm:p-6">
+          <div class="rounded-2xl border border-white/10 bg-slate9 p-7">
+            <svg class="h-11 w-11 text-cuerol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+            <h3 class="mt-3 font-serif text-lg font-semibold sm:mt-5 sm:text-2xl">Pedido mínimo accesible</h3>
+            <p class="mt-2 leading-relaxed text-slate3">Desde 10 unidades. Pedinos la lista de precios mayorista y armamos tu primer pedido.</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate9 p-7">
+            <svg class="h-11 w-11 text-cuerol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h11v10H2z"/><path d="M13 9h4l3 3v4h-7"/><circle cx="6.5" cy="17.5" r="1.7"/><circle cx="16.5" cy="17.5" r="1.7"/></svg>
+            <h3 class="mt-5 font-serif text-2xl font-semibold">Envíos por expreso</h3>
+            <p class="mt-2 leading-relaxed text-slate3">Coordinamos el despacho a tu localidad por expreso, con el embalaje que necesita cada pieza.</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate9 p-7">
+            <svg class="h-11 w-11 text-cuerol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 7.6 8 9 4.8-1.4 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+            <h3 class="mt-5 font-serif text-2xl font-semibold">Autenticidad garantizada</h3>
+            <p class="mt-2 leading-relaxed text-slate3">Piezas artesanales hechas en la Patagonia. Lo que vendés es lo que tu cliente se lleva a casa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== VISTA: HISTORIA ========== -->
+    <section data-view="historia" class="hidden">
+      <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <h1 class="max-w-4xl font-serif text-4xl font-semibold leading-tight sm:text-6xl">Arte criollo de la Patagonia, para tu local</h1>
+
+        <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_20rem]">
+          <article class="font-serif text-xl leading-[1.75] text-hueso/90 md:columns-2 md:gap-12">
+            <p>Patagonia Southwest reúne cuchillos, mates y bombillas de la tradición criolla patagónica: acero, alpaca y cuero, trabajados a mano.</p>
+
+            <p class="mt-5">No todas las piezas salen iguales, y esa es parte de su valor. Elegimos las que tienen sentido, identidad y un lugar en la mesa de quien las elige.</p>
+
+            <blockquote class="my-8 break-inside-avoid border-l-2 border-cuero pl-5 text-2xl italic text-hueso">
+              Cada pieza lleva algo del lugar de donde viene: el viento, la lana, el cuero y el silencio.
+              <footer class="mt-2 font-sans text-sm not-italic text-slate3">Patagonia Southwest</footer>
+            </blockquote>
+
+            <p>La alpaca, ese metal blanco que se deja cincelar, viste las virolas de los mates y las bombillas. Cada guarda se graba a mano, y por eso ninguna repite exactamente a la otra.</p>
+
+            <p class="mt-5">El cuero crudo se trenza, se cose y se envejece con el uso. Con los años cambia de tono y se queda con las marcas de quien lo usa, que es parte de lo que lo hace valioso.</p>
+
+            <blockquote class="my-8 break-inside-avoid border-l-2 border-cuero pl-5 text-2xl italic text-hueso">
+              Una pieza artesanal no se apura: se termina cuando está bien.
+              <footer class="mt-2 font-sans text-sm not-italic text-slate3">Patagonia Southwest</footer>
+            </blockquote>
+
+            <p>Trabajamos por mayor, para el comercio que quiere ofrecer algo auténtico. Armamos pedidos de cuchillos, mates y bombillas a partir de 10 unidades, con envío por expreso a tu localidad.</p>
+          </article>
+
+          <aside class="grid grid-cols-2 gap-4 lg:grid-cols-1">
+            <img src="./assets/bombilla-detalle.jpg" alt="Detalle del cincelado de una bombilla" class="aspect-square w-full rounded-2xl object-cover object-center">
+            <img src="./assets/mate-calabaza-cuero.jpg" alt="Mate rústico con faja de cuero sobre un tejido de lana" class="aspect-square w-full rounded-2xl object-cover object-center">
+          </aside>
+        </div>
+
+        <div class="mt-16 flex flex-wrap gap-4">
+          <a href="#/comercios" class="rounded-full bg-cuero px-7 py-3.5 text-sm font-bold text-ink transition hover:bg-cuerol">Ver catálogo mayorista</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== VISTA: ADMINISTRACIÓN ========== -->
+    <section data-view="admin" class="hidden">
+      <div id="admin-root" class="mx-auto max-w-6xl px-4 py-12 sm:px-6"></div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/10 bg-slate9">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="font-serif text-2xl font-semibold">Patagonia Southwest</p>
+        <p class="mt-1 text-sm text-slate3">Comodoro Rivadavia, Patagonia Argentina</p>
+      </div>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <li><a class="underline decoration-cuero underline-offset-4 hover:text-cuerol" href="https://wa.me/5492945641377" target="_blank" rel="noopener">WhatsApp 2945 641377</a></li>
+        <li><a class="underline decoration-cuero underline-offset-4 hover:text-cuerol" href="https://instagram.com/patagoniasouthwest" target="_blank" rel="noopener">@patagoniasouthwest</a></li>
+        <li><a class="underline decoration-cuero underline-offset-4 hover:text-cuerol" href="mailto:patagoniasouthwest@gmail.com">patagoniasouthwest@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="border-t border-white/5 py-4 text-center text-xs text-slate5">© <span id="year"></span> Patagonia Southwest · <a href="#/admin" class="hover:text-slate3">Administración</a></p>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite"
+       class="fixed bottom-5 left-1/2 z-[60] flex items-center gap-3 rounded-full border border-white/15 bg-slate8 px-5 py-3 text-sm shadow-xl">
+    <svg class="h-5 w-5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Ventana de detalle del producto -->
+  <div id="pmodal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="pmodal-title">
+    <div class="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-white/10 bg-slate9 shadow-2xl">
+      <button type="button" id="pmodal-close" aria-label="Cerrar" class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full bg-ink/80 text-xl leading-none transition hover:text-cuerol">×</button>
+      <div id="pmodal-body" class="grid gap-6 p-5 sm:grid-cols-2 sm:p-8"></div>
+    </div>
+  </div>
+  <!-- Carrito del pedido -->
+  <div id="cmodal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cmodal-title">
+    <div class="relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 bg-slate9 p-5 shadow-2xl sm:p-8">
+      <button type="button" id="cmodal-close" aria-label="Cerrar" class="absolute right-3 top-3 h-9 w-9 rounded-full bg-ink/80 text-xl leading-none transition hover:text-cuerol">×</button>
+      <h3 id="cmodal-title" class="text-center font-serif text-2xl font-semibold">Tu pedido</h3>
+      <div id="cmodal-body" class="mt-6"></div>
+    </div>
+  </div>
+  <script>
+  'use strict';
+
+  /* ===================== CONFIG ===================== */
+  const WHATSAPP_NUMBER = '5492945641377';
+
+  // Catálogo mayorista: true = muestra el precio sugerido de venta junto al precio mayorista.
+  // false = muestra solo el precio mayorista.
+  const SHOW_LIST_PRICE = true;
+
+  // Panel de administración (#/admin).
+  // OJO: esta clave queda visible en el código de la página. Sirve para ocultar el panel a curiosos,
+  // no es seguridad real. Cambiala por otra antes de publicar.
+  const ADMIN_PASSWORD = 'patagonia202626';
+  const ADMIN_SESSION_KEY = 'psw_admin_ok';
+
+  // Catálogo publicado: si existe un archivo products.json junto al index.html, el sitio lo usa en lugar de
+  // los productos de abajo. Se genera con el botón "Exportar" del panel de administración.
+  const PRODUCTS_URL = './products.json';
+  const DRAFT_KEY = 'psw_products_draft_v1';
+
+  /* Productos iniciales.
+     price = minorista | wholesale = mayorista por unidad (a mano, o null para "Consultar precio")
+     stock = unidades disponibles (null = sin límite) | images = fotos adicionales para la galería */
+  const DEFAULT_PRODUCTS = [
+    { id: 'cuchillo-trenzado-bicolor', cat: 'cuchillos', name: 'Cuchillo criollo trenzado bicolor',
+      desc: 'Mango de cuero crudo trenzado en dos tonos, con virolas torneadas.',
+      longDesc: 'Cuchillo criollo con hoja de acero inoxidable y mango de cuero crudo trenzado a mano en dos tonos. Las virolas torneadas cierran el mango en ambos extremos.\n\nEs una pieza artesanal: el trenzado y las terminaciones pueden variar levemente de una unidad a otra.',
+      price: 68000, wholesale: 44200, stock: null, img: './assets/cuchillo-trenzado-bicolor.jpg', images: [],
+      specs: [['Hoja', 'Acero inoxidable'], ['Mango', 'Cuero crudo trenzado, en dos tonos'], ['Virolas', 'Torneadas'], ['Hechura', 'Artesanal, en la Patagonia'], ['Cuidado', 'Secar después de usar y pasar unas gotas de aceite']] },
+    { id: 'cuchillo-trenzado-claro', cat: 'cuchillos', name: 'Cuchillo criollo trenzado claro',
+      desc: 'Mango de cuero crudo claro, trenzado a mano y terminado con virolas.',
+      longDesc: 'Cuchillo criollo con hoja de acero inoxidable y mango de cuero crudo claro, trenzado a mano. Las virolas dan el cierre al mango y acompañan el tono del cuero.\n\nCada unidad se trabaja de forma individual, por lo que el trenzado puede variar levemente.',
+      price: 72000, wholesale: 46800, stock: null, img: './assets/cuchillo-trenzado-claro.jpg', images: [],
+      specs: [['Hoja', 'Acero inoxidable'], ['Mango', 'Cuero crudo claro trenzado'], ['Virolas', 'Metálicas, con cordoncillo'], ['Hechura', 'Artesanal, en la Patagonia'], ['Cuidado', 'Secar después de usar y pasar unas gotas de aceite']] },
+    { id: 'cuchillo-casquillo', cat: 'cuchillos', name: 'Cuchillo criollo con casquillo de latón',
+      desc: 'Mango hecho con un casquillo de bala de latón y hoja de acero inoxidable.',
+      longDesc: 'Cuchillo criollo con hoja de acero inoxidable y un mango distinto: un casquillo de bala de latón trabajado como empuñadura. Una pieza con carácter, pensada para quien busca algo fuera de lo común.',
+      price: 54000, wholesale: 35100, stock: null, img: './assets/cuchillo-casquillo.jpg', images: [],
+      specs: [['Hoja', 'Acero inoxidable'], ['Mango', 'Casquillo de latón'], ['Hechura', 'Artesanal, en la Patagonia'], ['Cuidado', 'Secar después de usar y pasar unas gotas de aceite']] },
+    { id: 'mate-cuero-bordo', cat: 'mates', name: 'Mate de cuero bordó con virola grabada',
+      desc: 'Cuero bordó con costura a la vista, base con patas y virola grabada con motivo floral.',
+      longDesc: 'Mate de cuero bordó con costura a la vista, apoyado sobre una base con patas. La virola de alpaca rodea la boca y está grabada a mano con un motivo floral.',
+      price: 48000, wholesale: 31200, stock: null, img: './assets/mate-cuero-bordo.jpg', images: [],
+      specs: [['Cuerpo', 'Cuero bordó, con costura a la vista'], ['Virola', 'Alpaca grabada, motivo floral'], ['Base', 'Con patas'], ['Hechura', 'Artesanal, en la Patagonia']] },
+    { id: 'mate-cuero-negro', cat: 'mates', name: 'Mate de cuero negro con virola grabada',
+      desc: 'Cuero oscuro con base de tres patas y virola grabada con guardas y hojas.',
+      longDesc: 'Mate de cuero oscuro con base de tres patas. La virola de alpaca está grabada a mano con guardas y hojas que recorren todo el borde.',
+      price: 52000, wholesale: 33800, stock: null, img: './assets/mate-cuero-negro.jpg', images: [],
+      specs: [['Cuerpo', 'Cuero oscuro'], ['Virola', 'Alpaca grabada, guardas y hojas'], ['Base', 'Tres patas'], ['Hechura', 'Artesanal, en la Patagonia']] },
+    { id: 'mate-calabaza-cuero', cat: 'mates', name: 'Mate rústico con faja de cuero',
+      desc: 'Boca ancha, terminación natural y faja de cuero cosida a mano.',
+      longDesc: 'Mate de terminación natural y boca ancha, abrazado por una faja de cuero. Una pieza sencilla y rústica, de las que se usan todos los días.',
+      price: 31000, wholesale: 20200, stock: null, img: './assets/mate-calabaza-cuero.jpg', images: [],
+      specs: [['Boca', 'Ancha'], ['Terminación', 'Natural'], ['Faja', 'Cuero'], ['Hechura', 'Artesanal, en la Patagonia']] },
+    { id: 'bombilla-cincelada', cat: 'bombillas', name: 'Bombilla cincelada de pico plano',
+      desc: 'Metal pulido con cincelado en el caño y filtro de cuchara.',
+      longDesc: 'Bombilla de metal pulido con el caño cincelado a mano, pico plano y filtro tipo cuchara.\n\nSe vende por unidad.',
+      price: 18500, wholesale: 12000, stock: null, img: './assets/bombilla-cincelada.jpg',
+      images: ['./assets/bombillas-par.jpg', './assets/bombilla-detalle.jpg'],
+      specs: [['Caño', 'Cincelado a mano'], ['Pico', 'Plano'], ['Filtro', 'Tipo cuchara'], ['Terminación', 'Metal pulido'], ['Hechura', 'Artesanal, en la Patagonia']] }
+  ];
+
+  /* ===================== UTILIDADES ===================== */
+  const fmt = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const money = (n) => fmt.format(n);
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const slug = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const catLabel = (c) => c.charAt(0).toUpperCase() + c.slice(1).replace(/-/g, ' ');
+  const jump = (y) => window.scrollTo({ top: y, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+  // Acepta "foto.jpg", "./assets/foto.jpg" o una URL completa. Bloquea esquemas peligrosos (javascript:, etc.).
+  function assetUrl(u) {
+    u = String(u || '').trim();
+    if (!u) return '';
+    if (/^(https?:)?\/\//i.test(u) || u.startsWith('./') || u.startsWith('/') || /^data:image\//i.test(u)) return u;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(u)) return '';
+    return './assets/' + u.replace(/^\.?\/?assets\//, '');
+  }
+
+  /* ===== Encuadre de imágenes =====
+     Cada foto vive dentro de un marco (.fit-frame). Por defecto llena el marco (object-cover).
+     Si el recorte sería grande (fotos muy altas o muy anchas, como las bombillas), pasa a object-contain
+     y se rellena el espacio con la misma foto desenfocada: el producto se ve completo, sin cortes. */
+  function frame(src, alt, cls, opts = {}) {
+    const zoom = opts.zoom === false ? '' : ' transition-transform duration-500 group-hover:scale-105';
+    const loading = opts.eager ? 'eager' : 'lazy';
+    const extra = opts.extra || '';
+    const ratio = opts.ratio || 1;   // ancho / alto del marco
+    if (!src) return `<div class="fit-frame ${cls}" data-ratio="${ratio}">${extra}</div>`;
+    return `<div class="fit-frame ${cls}" data-ratio="${ratio}">
+      <img class="fit-bg" src="${esc(src)}" alt="" aria-hidden="true" loading="${loading}">
+      <img class="fit-main h-full w-full object-cover object-center${zoom}" src="${esc(src)}" alt="${esc(alt)}" loading="${loading}">
+      ${extra}
+    </div>`;
+  }
+  function applyFit(img) {
+    const box = img.closest('.fit-frame');
+    if (!box || !img.naturalWidth) return;
+    const r = img.naturalWidth / img.naturalHeight;
+    const fr = Number(box.dataset.ratio) || 1;
+    const crop = r > fr ? 1 - fr / r : 1 - r / fr;   // fracción de la foto que se recortaría
+    box.classList.toggle('is-contain', crop > 0.3);
+  }
+  document.addEventListener('load', (e) => {
+    if (e.target instanceof HTMLImageElement && e.target.classList.contains('fit-main')) applyFit(e.target);
+  }, true);
+  document.addEventListener('error', (e) => {
+    if (e.target instanceof HTMLImageElement && e.target.classList.contains('fit-main')) e.target.style.visibility = 'hidden';
+  }, true);
+  const fitAll = () => $$('img.fit-main').forEach((i) => { if (i.complete) applyFit(i); });
+
+  /* ===================== PRODUCTOS ===================== */
+  const Products = (() => {
+    const listeners = new Set();
+    let version = 0;
+    let ready = false;
+
+    function normalize(p) {
+      if (!p || typeof p !== 'object') return null;
+      const name = String(p.name || '').trim();
+      const id = slug(p.id || name);
+      const price = (p.price === null || p.price === '' || p.price === undefined) ? null : Number(p.price);
+      if (!id || !name || (price !== null && (!Number.isFinite(price) || price < 0))) return null;
+      const w = (p.wholesale === null || p.wholesale === '' || p.wholesale === undefined) ? NaN : Number(p.wholesale);
+      const s = (p.stock === null || p.stock === '' || p.stock === undefined) ? NaN : Math.floor(Number(p.stock));
+      const img = assetUrl(p.img);
+      const extra = Array.isArray(p.images) ? p.images.map(assetUrl).filter(Boolean) : [];
+      const images = [img, ...extra].filter((x, i, a) => x && a.indexOf(x) === i);
+      const specs = Array.isArray(p.specs)
+        ? p.specs.filter((r) => Array.isArray(r) && r[0] && r[1]).map((r) => [String(r[0]).trim(), String(r[1]).trim()]) : [];
+      return {
+        id, cat: slug(p.cat) || 'otros', name,
+        desc: String(p.desc || '').trim(), longDesc: String(p.longDesc || '').trim(),
+        price, wholesale: Number.isFinite(w) && w > 0 ? w : null,
+        stock: Number.isFinite(s) && s >= 0 ? s : null,
+        img: images[0] || '', images, specs,
+        archived: p.archived === true
+      };
+    }
+    const clean = (list) => list.map(normalize).filter((p, i, a) => p && a.findIndex((q) => q && q.id === p.id) === i);
+
+    let base = clean(DEFAULT_PRODUCTS);
+    let draft = null;
+    try {
+      const raw = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+      if (Array.isArray(raw)) draft = clean(raw);
+    } catch (e) { /* sin borrador */ }
+
+    const emit = () => { version++; listeners.forEach((fn) => fn()); };
+    const persist = () => {
+      try { draft ? localStorage.setItem(DRAFT_KEY, JSON.stringify(draft)) : localStorage.removeItem(DRAFT_KEY); } catch (e) { /* ignorar */ }
+    };
+
+    return {
+      all: () => draft || base,
+      find: (id) => (draft || base).find((p) => p.id === id),
+      categories() {
+        return [...new Set((draft || base).map((p) => p.cat))].map((c) => ({ id: c, label: catLabel(c) }));
+      },
+      hasDraft: () => !!draft,
+      version: () => version,
+      ready: () => ready,
+      subscribe: (fn) => listeners.add(fn),
+      saveDraft(list) { draft = clean(list); persist(); emit(); },
+      discardDraft() { draft = null; persist(); emit(); },
+      fetchPublished() {
+        const done = () => { if (!ready) { ready = true; emit(); } };
+        const timer = setTimeout(done, 2500);
+        fetch(PRODUCTS_URL, { cache: 'no-cache' })
+          .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+          .then((list) => {
+            if (Array.isArray(list) && list.length) { base = clean(list); if (ready) emit(); }
+          })
+          .catch(() => { /* sin products.json: se usan los productos iniciales */ })
+          .finally(() => { clearTimeout(timer); done(); });
+      }
+    };
+  })();
+
+  const maxQty = (p) => (p.stock == null ? 99 : Math.min(99, p.stock));
+
+  /* ===================== RUTAS Y VISTAS ===================== */
+  const TITLES = { comercios: 'Catálogo mayorista', historia: 'Sobre nosotros', admin: 'Administración' };
+  const Route = { view: 'comercios', adminOn: false };
+
+  function refreshBanner() {
+    $('#draft-banner').classList.toggle('hidden', !Products.hasDraft());
+  }
+
+  function applyRoute() {
+    const v = Route.view;
+    $$('[data-view]').forEach((el) => {
+      const active = el.dataset.view === v;
+      el.classList.toggle('hidden', !active);
+      if (active) { el.classList.remove('view-enter'); void el.offsetWidth; el.classList.add('view-enter'); }
+    });
+    $$('[data-nav]').forEach((a) => {
+      const active = a.dataset.nav === v;
+      a.classList.toggle('bg-white/10', active);
+      a.classList.toggle('text-hueso', active);
+      a.classList.toggle('text-slate3', !active);
+      if (active) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    refreshBanner();
+    if (v === 'admin') {
+      if (!Route.adminOn) { Route.adminOn = true; Admin.render(true); }
+    } else if (Route.adminOn) { Route.adminOn = false; Admin.reset(); }
+    requestAnimationFrame(fitAll);
+  }
+
+  /* ===================== ROUTER ===================== */
+  const Router = (() => {
+    function parse() {
+      const v = location.hash.replace(/^#\/?/, '').split('/')[0];
+      return TITLES[v] ? v : 'comercios';
+    }
+    function sync() {
+      const view = parse();
+      const changed = view !== Route.view;
+      Route.view = view;
+      document.title = TITLES[view] + ' | Patagonia Southwest';
+      applyRoute();
+      if (changed) jump(0);
+    }
+    return { init() { window.addEventListener('hashchange', sync); sync(); } };
+  })();
+
+  /* ===================== TOAST ===================== */
+  const Toast = (() => {
+    let timer;
+    return {
+      show(msg) {
+        $('#toast-msg').textContent = msg;
+        const t = $('#toast');
+        t.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(() => t.classList.remove('show'), 2600);
+      },
+      hide() { $('#toast').classList.remove('show'); }
+    };
+  })();
+
+  /* ===================== PANEL DE ADMINISTRACIÓN ===================== */
+  const Admin = (() => {
+    let editing = null;   // null | 'new' | id de producto
+    const FIELD = 'w-full rounded-lg border border-white/15 bg-ink px-4 py-3 text-hueso placeholder:text-slate5';
+    const BTN = 'rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold transition hover:border-cuerol';
+    const BTN_MAIN = 'rounded-full bg-cuero px-5 py-2.5 text-sm font-bold text-ink transition hover:bg-cuerol';
+
+    const isLogged = () => { try { return sessionStorage.getItem(ADMIN_SESSION_KEY) === '1'; } catch (e) { return false; } };
+    const setLogged = (v) => { try { v ? sessionStorage.setItem(ADMIN_SESSION_KEY, '1') : sessionStorage.removeItem(ADMIN_SESSION_KEY); } catch (e) { /* ignorar */ } };
+
+    function loginHTML(error) {
+      return `
+        <div class="mx-auto max-w-sm rounded-2xl border border-white/10 bg-slate9 p-8">
+          <h1 class="font-serif text-3xl font-semibold">Administración</h1>
+          <p class="mt-2 text-sm text-slate3">Ingresá la clave para gestionar los productos.</p>
+          <form id="admin-login" class="mt-6 space-y-4" novalidate>
+            <div>
+              <label for="admin-pass" class="mb-1.5 block text-sm font-medium">Clave</label>
+              <input id="admin-pass" type="password" autocomplete="current-password" class="${FIELD}">
+              <p id="admin-login-error" class="mt-1 ${error ? '' : 'hidden'} text-sm text-red-300" role="alert">Clave incorrecta.</p>
+            </div>
+            <button type="submit" class="${BTN_MAIN} w-full py-3">Ingresar</button>
+          </form>
+        </div>`;
+    }
+
+    function stockLabel(p) { return p.stock === null ? 'Sin límite' : (p.stock === 0 ? '<span class="text-red-300">Sin stock</span>' : p.stock); }
+
+    function dashboardHTML() {
+      const list = Products.all();
+      const rows = list.map((p) => `
+        <tr class="border-t border-white/10">
+          <td class="p-3">${frame(p.img, '', 'h-14 w-14 rounded-lg', { zoom: false })}</td>
+          <td class="p-3"><p class="font-semibold">${esc(p.name)} ${p.archived ? '<span class="ml-2 rounded-full bg-white/10 px-2 py-0.5 text-xs text-slate3">Archivado</span>' : ''}</p><p class="text-xs text-slate5">${esc(p.id)}</p></td>
+          <td class="p-3 text-slate3">${esc(catLabel(p.cat))}</td>
+          <td class="p-3 whitespace-nowrap">${p.price ? money(p.price) : '<span class="text-slate5">—</span>'}</td>
+          <td class="p-3 whitespace-nowrap">${p.wholesale ? money(p.wholesale) : '<span class="text-slate5">Consultar</span>'}</td>
+          <td class="p-3">${stockLabel(p)}</td>
+          <td class="p-3 whitespace-nowrap text-right">
+            <button type="button" data-admin="edit" data-id="${p.id}" class="rounded-full px-3 py-1.5 text-sm font-bold text-cuerol transition hover:bg-white/10">Editar</button>
+            <button type="button" data-admin="archive" data-id="${p.id}" class="rounded-full px-3 py-1.5 text-sm font-bold text-slate3 transition hover:bg-white/10">${p.archived ? 'Restaurar' : 'Archivar'}</button>
+            <button type="button" data-admin="delete" data-id="${p.id}" class="rounded-full px-3 py-1.5 text-sm font-bold text-red-300 transition hover:bg-white/10">Eliminar</button>
+          </td>
+        </tr>`).join('');
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <h1 class="font-serif text-3xl font-semibold sm:text-4xl">Panel de administración</h1>
+          <div class="flex flex-wrap gap-3">
+            <button type="button" data-admin="new" class="${BTN_MAIN}">Nuevo producto</button>
+            <button type="button" data-admin="export" class="${BTN}">Exportar products.json</button>
+            <button type="button" data-admin="import" class="${BTN}">Importar</button>
+            ${Products.hasDraft() ? `<button type="button" data-admin="discard" class="${BTN}">Descartar cambios locales</button>` : ''}
+            <button type="button" data-admin="logout" class="${BTN}">Cerrar sesión</button>
+          </div>
+        </div>
+        <input id="admin-import" type="file" accept="application/json,.json" class="sr-only" tabindex="-1">
+
+        <div class="mt-6 rounded-xl border border-white/10 bg-slate9 p-5 text-sm leading-relaxed text-slate3">
+          <p><strong class="text-hueso">Cómo se publican los cambios.</strong> Todo lo que editás acá se guarda en este navegador y lo ves enseguida en el catálogo.
+          Tus clientes todavía no lo ven. Para publicarlo, tocá <strong class="text-hueso">Exportar products.json</strong> y subí ese archivo a la raíz del sitio, junto al <code>index.html</code>, reemplazando el anterior.</p>
+          ${Products.hasDraft() ? '<p class="mt-2 font-medium text-cuerol">Tenés cambios sin publicar.</p>' : ''}
+        </div>
+
+        ${editing !== null ? formHTML(editing === 'new' ? null : Products.find(editing)) : ''}
+
+        <div class="mt-8 overflow-x-auto rounded-xl border border-white/10 bg-slate9">
+          <table class="w-full min-w-[760px] text-left text-sm">
+            <thead class="text-slate3"><tr>
+              <th class="p-3 font-medium"><span class="sr-only">Foto</span></th><th class="p-3 font-medium">Producto</th><th class="p-3 font-medium">Categoría</th>
+              <th class="p-3 font-medium">Sugerido</th><th class="p-3 font-medium">Mayorista</th><th class="p-3 font-medium">Stock</th><th class="p-3 text-right font-medium">Acciones</th>
+            </tr></thead>
+            <tbody>${rows || '<tr><td colspan="7" class="p-6 text-center text-slate3">No hay productos. Creá el primero con "Nuevo producto".</td></tr>'}</tbody>
+          </table>
+        </div>`;
+    }
+
+    function formHTML(p) {
+      const isNew = !p;
+      const v = p || { name: '', cat: '', price: '', wholesale: null, stock: null, desc: '', longDesc: '', img: '', images: [], specs: [] };
+      const cats = Products.categories().map((c) => `<option value="${esc(c.id)}"></option>`).join('');
+      const lab = (t, f) => `<label for="${f}" class="mb-1.5 block text-sm font-medium">${t}</label>`;
+      return `
+        <form id="admin-form" novalidate data-editing="${isNew ? '' : esc(p.id)}" class="mt-8 grid gap-5 rounded-2xl border border-cuero/40 bg-slate9 p-6 sm:grid-cols-2">
+          <h2 class="font-serif text-2xl font-semibold sm:col-span-2">${isNew ? 'Nuevo producto' : 'Editar producto'}</h2>
+          <div class="sm:col-span-2">${lab('Nombre', 'af-name')}<input id="af-name" name="name" type="text" class="${FIELD}" value="${esc(v.name)}"></div>
+          <div>${lab('Categoría', 'af-cat')}<input id="af-cat" name="cat" type="text" list="af-cats" class="${FIELD}" value="${esc(v.cat)}" placeholder="cuchillos, mates, bombillas…"><datalist id="af-cats">${cats}</datalist></div>
+          <div>${lab('Stock <span class="text-slate5">(vacío = sin límite)</span>', 'af-stock')}<input id="af-stock" name="stock" type="number" min="0" step="1" inputmode="numeric" class="${FIELD}" value="${v.stock ?? ''}"></div>
+          <div>${lab('Precio sugerido al público (ARS) <span class="text-slate5">(opcional)</span>', 'af-price')}<input id="af-price" name="price" type="number" min="0" step="any" inputmode="decimal" class="${FIELD}" value="${v.price ?? ''}"></div>
+          <div>${lab('Precio mayorista (ARS) <span class="text-slate5">(vacío = Consultar)</span>', 'af-wholesale')}<input id="af-wholesale" name="wholesale" type="number" min="0" step="any" inputmode="decimal" class="${FIELD}" value="${v.wholesale ?? ''}"></div>
+          <div class="sm:col-span-2">${lab('Descripción corta <span class="text-slate5">(se ve en la tarjeta)</span>', 'af-desc')}<textarea id="af-desc" name="desc" rows="2" class="${FIELD}">${esc(v.desc)}</textarea></div>
+          <div class="sm:col-span-2">${lab('Descripción detallada <span class="text-slate5">(una línea en blanco separa párrafos)</span>', 'af-long')}<textarea id="af-long" name="longDesc" rows="5" class="${FIELD}">${esc(v.longDesc)}</textarea></div>
+          <div class="sm:col-span-2">
+            ${lab('Imagen principal', 'af-img')}
+            <div class="flex flex-wrap items-center gap-3">
+              <input id="af-img" name="img" type="text" class="${FIELD} sm:flex-1" value="${esc(v.img)}" placeholder="./assets/mi-foto.jpg">
+              <label for="admin-file" class="${BTN} cursor-pointer">Elegir archivo</label>
+              <input id="admin-file" type="file" accept="image/*" class="sr-only" tabindex="-1">
+              <div class="fit-frame h-16 w-16 shrink-0 rounded-lg"><img id="admin-preview" class="h-full w-full object-cover" alt="" ${v.img ? `src="${esc(v.img)}"` : 'style="visibility:hidden"'}></div>
+            </div>
+            <p class="mt-1 text-xs text-slate5">Escribí la ruta de una foto de la carpeta assets (o una URL completa). Si elegís un archivo, acordate de subirlo a la carpeta assets del sitio.</p>
+          </div>
+          <div class="sm:col-span-2">${lab('Fotos adicionales <span class="text-slate5">(una por línea, para la galería)</span>', 'af-images')}<textarea id="af-images" name="images" rows="3" class="${FIELD}" placeholder="./assets/otra-foto.jpg">${esc(v.images.slice(1).join('\n'))}</textarea></div>
+          <div class="sm:col-span-2">${lab('Especificaciones <span class="text-slate5">(una por línea, con el formato Etiqueta: valor)</span>', 'af-specs')}<textarea id="af-specs" name="specs" rows="5" class="${FIELD}" placeholder="Largo total: 24 cm&#10;Hoja: Acero inoxidable">${esc(v.specs.map(([k, val]) => `${k}: ${val}`).join('\n'))}</textarea></div>
+          <p id="admin-form-error" role="alert" class="hidden text-sm text-red-300 sm:col-span-2"></p>
+          <div class="flex flex-wrap gap-3 sm:col-span-2">
+            <button type="submit" class="${BTN_MAIN}">Guardar producto</button>
+            <button type="button" data-admin="cancel" class="${BTN}">Cancelar</button>
+          </div>
+        </form>`;
+    }
+
+    function render(force) {
+      if (!force && editing !== null) return;   // no pisar un formulario abierto
+      const root = $('#admin-root');
+      root.innerHTML = isLogged() ? dashboardHTML() : loginHTML(false);
+      requestAnimationFrame(fitAll);
+    }
+
+    function showFormError(msg) {
+      const el = $('#admin-form-error');
+      el.textContent = msg; el.classList.remove('hidden');
+    }
+
+    function saveForm(form) {
+      const get = (k) => String(new FormData(form).get(k) ?? '').trim();
+      const name = get('name'), desc = get('desc'), img = assetUrl(get('img'));
+      const price = get('price') === '' ? null : Number(get('price'));
+      const wholesale = get('wholesale') === '' ? null : Number(get('wholesale'));
+      const stock = get('stock') === '' ? null : Number(get('stock'));
+      if (!name) return showFormError('Ingresá el nombre del producto.');
+      if (price !== null && (!Number.isFinite(price) || price < 0)) return showFormError('El precio sugerido tiene que ser un número válido, o dejalo vacío.');
+      if (wholesale !== null && (!Number.isFinite(wholesale) || wholesale <= 0)) return showFormError('El precio mayorista tiene que ser un número mayor a 0, o dejalo vacío.');
+      if (stock !== null && (!Number.isInteger(stock) || stock < 0)) return showFormError('El stock tiene que ser un número entero, o dejalo vacío.');
+      if (!desc) return showFormError('Ingresá una descripción corta.');
+      if (!img) return showFormError('Ingresá la imagen principal.');
+
+      const extra = get('images').split('\n').map(assetUrl).filter(Boolean);
+      const specs = get('specs').split('\n').map((l) => {
+        const i = l.indexOf(':');
+        return i > 0 ? [l.slice(0, i).trim(), l.slice(i + 1).trim()] : null;
+      }).filter((r) => r && r[0] && r[1]);
+
+      const list = Products.all().slice();
+      const editId = form.dataset.editing;
+      let id = editId;
+      if (!editId) {
+        const baseId = slug(name) || 'producto';
+        id = baseId;
+        for (let n = 2; list.some((p) => p.id === id); n++) id = `${baseId}-${n}`;
+      }
+      const prev = list.find((p) => p.id === id);
+      const product = { id, cat: get('cat'), name, desc, longDesc: get('longDesc'), price, wholesale, stock, img, images: [img, ...extra], specs, archived: prev ? !!prev.archived : false };
+      const idx = list.findIndex((p) => p.id === id);
+      if (idx >= 0) list[idx] = product; else list.push(product);
+
+      editing = null;
+      Products.saveDraft(list);
+      render(true);
+      Toast.show('Producto guardado', false);
+    }
+
+    function download(filename, text) {
+      const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+      const a = Object.assign(document.createElement('a'), { href: url, download: filename });
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    return {
+      render,
+      reset() { editing = null; },
+      login(pass) {
+        if (pass === ADMIN_PASSWORD) { setLogged(true); render(true); return; }
+        $('#admin-root').innerHTML = loginHTML(true);
+        $('#admin-pass').focus();
+      },
+      saveForm,
+      handle(el) {
+        const id = el.dataset.id;
+        switch (el.dataset.admin) {
+          case 'new': editing = 'new'; render(true); $('#af-name').focus(); break;
+          case 'edit': editing = id; render(true); $('#admin-form').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#af-name').focus(); break;
+          case 'cancel': editing = null; render(true); break;
+          case 'archive': {
+            const list = Products.all().map((x) => (x.id === id ? { ...x, archived: !x.archived } : x));
+            Products.saveDraft(list);
+            Toast.show(list.find((x) => x.id === id).archived ? 'Producto archivado' : 'Producto restaurado', false);
+            break;
+          }
+          case 'delete': {
+            const p = Products.find(id);
+            if (p && confirm(`¿Eliminar "${p.name}"? Esta acción se puede deshacer descartando los cambios locales o importando un archivo anterior.`)) {
+              Products.saveDraft(Products.all().filter((x) => x.id !== id));
+              Toast.show('Producto eliminado', false);
+            }
+            break;
+          }
+          case 'export':
+            download('products.json', JSON.stringify(Products.all(), null, 2));
+            // Lo exportado pasa a ser la versión a publicar: se descarta el borrador local
+            // para que la página muestre el products.json que subas, y no los cambios viejos.
+            Products.discardDraft();
+            Toast.show('Archivo exportado. Subilo a tu sitio; los cambios locales ya quedaron incluidos.', false);
+            break;
+          case 'import': $('#admin-import').click(); break;
+          case 'discard':
+            if (confirm('¿Descartar los cambios guardados en este navegador y volver al catálogo publicado?')) { Products.discardDraft(); Toast.show('Cambios descartados', false); }
+            break;
+          case 'logout': setLogged(false); editing = null; render(true); break;
+        }
+      },
+      importFile(file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const data = JSON.parse(reader.result);
+            if (!Array.isArray(data) || !data.length) throw new Error('vacío');
+            Products.saveDraft(data);
+            Toast.show('Catálogo importado', false);
+          } catch (e) { Toast.show('No se pudo importar: el archivo no es un products.json válido', false); }
+        };
+        reader.readAsText(file);
+      }
+    };
+  })();
+
+  /* ===================== EVENTOS (delegación) ===================== */
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-admin],[data-action]');
+    if (!t) return;
+    if (t.dataset.admin) { Admin.handle(t); return; }
+    if (t.dataset.action === 'scroll-b2b') $('#wholesale').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  document.addEventListener('submit', (e) => {
+    if (e.target.id === 'admin-login') { e.preventDefault(); Admin.login($('#admin-pass').value); }
+    else if (e.target.id === 'admin-form') { e.preventDefault(); Admin.saveForm(e.target); }
+  });
+
+  document.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.id === 'admin-import' && t.files[0]) { Admin.importFile(t.files[0]); t.value = ''; }
+    else if (t.id === 'admin-file' && t.files[0]) {
+      const f = t.files[0];
+      $('#af-img').value = './assets/' + f.name;
+      const pv = $('#admin-preview');
+      pv.src = URL.createObjectURL(f); pv.style.visibility = 'visible';
+    }
+  });
+
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'af-img') {
+      const pv = $('#admin-preview'); const u = assetUrl(e.target.value);
+      if (u) { pv.src = u; pv.style.visibility = 'visible'; } else pv.style.visibility = 'hidden';
+    }
+  });
+
+  /* ===================== CATÁLOGO MAYORISTA ===================== */
+  const B2B = (() => {
+    const wholesale = $('#wholesale');
+
+    const waLink = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+    /* ----- Pedido mayorista: cantidades propias, propias de este catálogo ----- */
+    const WHOLESALE_KEY = 'psw_mayorista_v1';
+    const MIN_UNITS = 10;
+    const MIN_PER_PRODUCT = 10;
+    const CAT_ORDER = ['cuchillos', 'mates', 'bombillas'];
+    const CAT_TITLES = { cuchillos: 'Cuchillos', mates: 'Mates', bombillas: 'Bombillas' };
+
+    // Condiciones comerciales: editá estos números para cambiar los descuentos.
+    // Volumen: se aplica sobre el subtotal según la cantidad total de unidades del pedido.
+    // Transferencia: se aplica al final, sobre el precio de cada unidad y sobre el total.
+    const TERMS = {
+      transferOff: 0.05,
+      tiers: [ { min: 50, off: 0.10 }, { min: 40, off: 0.08 }, { min: 20, off: 0.05 } ]
+    };
+    const volumeOff = (u) => (TERMS.tiers.find((t) => u >= t.min) || { off: 0 }).off;
+    const nextTier = (u) => [...TERMS.tiers].reverse().find((t) => u < t.min) || null;
+    const tPrice = (p) => Math.round(p.wholesale * (1 - TERMS.transferOff));
+    const wSubtotal = () => wLines().reduce((s, l) => s + l.p.wholesale * l.qty, 0);
+
+    let wOrder = (() => {
+      try { const r = JSON.parse(localStorage.getItem(WHOLESALE_KEY) || '{}'); return r && typeof r === 'object' ? r : {}; }
+      catch (e) { return {}; }
+    })();
+    const wSave = () => { try { localStorage.setItem(WHOLESALE_KEY, JSON.stringify(wOrder)); } catch (e) { /* sin almacenamiento */ } };
+    const wQty = (id) => { const n = Math.floor(Number(wOrder[id]) || 0); return n >= MIN_PER_PRODUCT ? n : 0; };
+    const wLines = () => Products.all().filter((p) => !p.archived && p.wholesale && wQty(p.id) > 0).map((p) => ({ p, qty: wQty(p.id) }));
+    const wUnits = () => wLines().reduce((n, l) => n + l.qty, 0);
+    const wTotal = () => Math.round(wSubtotal() * (1 - volumeOff(wUnits())) * (1 - TERMS.transferOff));
+    const wMessage = () => {
+      const u = wUnits();
+      const sub = wSubtotal();
+      const vol = volumeOff(u);
+      const volAmt = Math.round(sub * vol);
+      const afterVol = sub - volAmt;
+      const total = wTotal();
+      return [
+        'Hola Patagonia Southwest! Quiero armar este pedido mayorista:', '',
+        ...wLines().map((l) => `- ${l.p.name} x${l.qty}: ${money(l.p.wholesale * l.qty)}`),
+        '',
+        `Subtotal (lista): ${money(sub)}`,
+        vol ? `Descuento por volumen (−${Math.round(vol * 100)}%): −${money(volAmt)}` : null,
+        `Descuento por transferencia (−${Math.round(TERMS.transferOff * 100)}%): −${money(afterVol - total)}`,
+        `Total a transferir: ${money(total)} (${u} unidades)`,
+        '', 'Coordinamos el envío por expreso. ¡Gracias!'
+      ].filter((x) => x !== null).join('\n');
+    };
+
+    function wPaint() {
+      $$('[data-wqty]').forEach((el) => {
+        const id = el.dataset.wqty;
+        const p = Products.find(id);
+        const q = wQty(id);
+        el.textContent = q;
+        const minus = $(`[data-wminus="${id}"]`);
+        const plus = $(`[data-wplus="${id}"]`);
+        if (minus) minus.disabled = q === 0;
+        if (plus) plus.disabled = !p || q >= maxQty(p);
+        const add = $(`[data-wadd10="${id}"]`);
+        if (add) add.disabled = !p || q >= maxQty(p);
+      });
+      const lines = wLines();
+      $('#wbar-lines').innerHTML = lines.length
+        ? lines.map((l) => `<span class="rounded-full bg-white/10 px-3 py-1">${esc(l.p.name)}: <b>${l.qty} u</b></span>`).join('')
+        : '<span class="text-slate5">Todavía no agregaste productos</span>';
+      const u = wUnits();
+      const ok = u >= MIN_UNITS;
+      const vo = volumeOff(u);
+      const nt = nextTier(u);
+      const saved = wSubtotal() - wTotal();
+      $('#wbar-text').innerHTML = ok
+        ? `<span class="sm:hidden">${u} u. · ${money(wTotal())}</span><span class="hidden sm:inline">Llevás ${u} unidades · ${money(wTotal())} · Estás ahorrando ${money(saved)}</span>`
+        : `Llevás ${u} de ${MIN_UNITS} unidades. Te faltan ${MIN_UNITS - u}.`;
+      $('#wbar-progress').style.width = Math.min(100, (u / MIN_UNITS) * 100) + '%';
+      $('#wbar-send').disabled = !ok;
+      const bar = $('#wbar');
+      bar.classList.toggle('hidden', u === 0);
+      bar.classList.toggle('flex', u > 0);
+      if (!cmodal.classList.contains('hidden')) renderCart();
+    }
+
+    function wSet(id, qty) {
+      const p = Products.find(id);
+      if (!p || !p.wholesale) return;
+      const before = wQty(id);
+      let q = Math.max(0, Math.min(Math.floor(qty), maxQty(p)));
+      // Por producto: de 0 se pasa directo a 10 y no se puede quedar entre 1 y 9
+      if (q > 0 && q < MIN_PER_PRODUCT) q = qty > before ? Math.min(MIN_PER_PRODUCT, maxQty(p)) : 0;
+      if (q > 0) wOrder[id] = q; else delete wOrder[id];
+      wSave();
+      wPaint();
+    }
+
+    const pmodal = $('#pmodal');
+    const cmodal = $('#cmodal');
+    function openDetail(id) {
+      const p = Products.find(id);
+      if (!p) return;
+      const imgs = (p.images && p.images.length ? p.images : [p.img]).filter(Boolean);
+      const hasPrice = !!p.wholesale;
+      const tp = hasPrice ? tPrice(p) : 0;
+      const hasSug = hasPrice && !!p.price;
+      const margin = hasSug ? Math.round((1 - tp / p.price) * 100) : 0;
+      const gain = hasSug ? p.price - tp : 0;
+      const purchaseBlock = hasPrice && p.stock !== 0 ? `
+        <div class="flex flex-col gap-3 rounded-2xl border border-white/10 bg-ink/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+          <div class="flex items-center justify-between gap-3 rounded-full border border-white/15 p-1 sm:justify-start">
+            <span class="pl-4 text-sm text-slate3">Cantidad</span>
+            <div class="flex items-center gap-2">
+              <button type="button" data-wminus="${p.id}" aria-label="Quitar una unidad" class="h-9 w-9 rounded-full border border-white/15 text-lg leading-none transition hover:border-cuerol disabled:opacity-30">−</button>
+              <span data-wqty="${p.id}" class="w-8 text-center font-bold">0</span>
+              <button type="button" data-wplus="${p.id}" aria-label="Agregar una unidad" class="h-9 w-9 rounded-full border border-white/15 text-lg leading-none transition hover:border-cuerol disabled:opacity-30">+</button>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 sm:flex-row">
+            <button type="button" data-wadd10="${p.id}" class="rounded-full bg-cuero px-6 py-3 text-sm font-bold text-ink transition hover:bg-cuerol disabled:cursor-not-allowed disabled:opacity-40">Agregar 10 u.</button>
+            <button type="button" data-pclose class="rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-hueso transition hover:border-cuerol">Seguir comprando</button>
+          </div>
+        </div>` : '';
+      const rel = Products.all().filter((x) => !x.archived && x.cat === p.cat && x.id !== p.id).slice(0, 4);
+      const relBlock = rel.length ? `
+        <div class="border-t border-white/10 pt-6 sm:col-span-2">
+          <h4 class="text-center font-serif text-xl font-semibold">Productos relacionados</h4>
+          <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            ${rel.map((x) => `
+              <button type="button" data-rel="${x.id}" class="flex flex-col overflow-hidden rounded-xl border border-white/10 bg-ink/40 text-left transition hover:border-cuero/50">
+                <img src="${x.img}" alt="${esc(x.name)}" class="aspect-[4/5] w-full object-cover object-center">
+                <span class="p-2 sm:p-3">
+                  <span class="block truncate text-sm font-semibold">${esc(x.name)}</span>
+                  <span class="text-sm text-cuerol">${x.wholesale ? money(tPrice(x)) : 'Consultar precio'}</span>
+                </span>
+              </button>`).join('')}
+          </div>
+        </div>` : '';
+      $('#pmodal-body').innerHTML = `
+        <div>
+          <img id="pmodal-main" src="${imgs[0]}" alt="${esc(p.name)}" class="aspect-[4/5] w-full rounded-xl bg-slate9 object-cover object-center">
+          ${imgs.length > 1 ? `<div class="mt-3 flex gap-2">${imgs.map((src, i) => `<button type="button" data-pthumb="${src}" aria-label="Ver foto ${i + 1} de ${esc(p.name)}" class="h-14 w-14 overflow-hidden rounded-lg border border-white/15 transition hover:border-cuerol"><img src="${src}" alt="" class="h-full w-full object-cover"></button>`).join('')}</div>` : ''}
+        </div>
+        <div>
+          <h3 id="pmodal-title" class="font-serif text-2xl font-semibold leading-snug sm:text-3xl">${esc(p.name)}</h3>
+          ${p.production ? `<p class="mt-2 text-sm text-slate3">Producción: ${esc(p.production)}</p>` : ''}
+          <p class="mt-3 text-sm leading-relaxed text-slate3">${esc(p.desc)}</p>
+          ${hasPrice ? `<div class="mt-5 flex flex-wrap items-baseline gap-x-3"><span class="font-serif text-2xl text-cuerol">${money(tp)}</span><s class="text-sm text-slate5">${money(p.wholesale)}</s></div><p class="text-xs text-slate3">Precio por transferencia</p>` : `<p class="mt-5 font-serif text-xl text-cuerol">Consultar precio</p>`}
+          ${hasSug ? `<p class="mt-4 text-sm text-slate3">Sugerido de venta: <b class="text-hueso">${money(p.price)}</b> · Ganancia sugerida: <b class="text-cuerol">${margin}% (${money(gain)} por unidad)</b></p>` : ''}
+          ${p.longDesc ? `<p class="mt-5 whitespace-pre-line text-sm leading-relaxed text-slate3">${esc(p.longDesc)}</p>` : ''}
+          <dl class="mt-5 divide-y divide-white/10 text-sm">
+            ${(p.specs || []).map(([k, v]) => `<div class="grid grid-cols-[7rem_1fr] gap-3 py-2"><dt class="text-slate5">${esc(k)}</dt><dd class="text-hueso">${esc(v)}</dd></div>`).join('')}
+          </dl>
+        </div>
+        <div class="sm:col-span-2">${purchaseBlock}</div>
+        ${relBlock}`;
+      wPaint();
+      pmodal.classList.remove('hidden');
+      pmodal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDetail() {
+      pmodal.classList.add('hidden');
+      pmodal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    pmodal.addEventListener('click', (e) => {
+      if (e.target === pmodal || e.target.closest('#pmodal-close') || e.target.closest('[data-pclose]')) { closeDetail(); return; }
+      const rl = e.target.closest('[data-rel]');
+      if (rl) { openDetail(rl.dataset.rel); pmodal.querySelector('.overflow-y-auto').scrollTop = 0; return; }
+      const pt = e.target.closest('[data-pthumb]');
+      if (pt) { const main = $('#pmodal-main'); if (main) main.src = pt.dataset.pthumb; }
+    });
+    function renderCart() {
+      const lines = wLines();
+      const u = wUnits();
+      if (!lines.length) {
+        $('#cmodal-body').innerHTML = `
+          <p class="text-center text-slate3">Todavía no agregaste productos.</p>
+          <button type="button" data-cclose class="mt-6 w-full rounded-full bg-cuero px-6 py-3 text-sm font-bold text-ink transition hover:bg-cuerol">Seguir comprando</button>`;
+        return;
+      }
+      const sub = wSubtotal();
+      const vol = volumeOff(u);
+      const volAmt = Math.round(sub * vol);
+      const total = wTotal();
+      const trAmt = (sub - volAmt) - total;
+      const saved = sub - total;
+      const ok = u >= MIN_UNITS;
+      $('#cmodal-body').innerHTML = `
+        <ul class="divide-y divide-white/10">
+          ${lines.map(({ p, qty }) => `
+            <li class="flex items-center gap-4 py-4">
+              <img src="${p.img}" alt="" class="h-16 w-14 shrink-0 rounded-lg object-cover object-center">
+              <div class="min-w-0 flex-1">
+                <p class="truncate font-semibold">${esc(p.name)}</p>
+                <p class="text-xs text-slate3">${money(tPrice(p))} c/u por transferencia</p>
+                <div class="mt-2 flex items-center gap-2">
+                  <button type="button" data-wminus="${p.id}" aria-label="Quitar una unidad" class="h-7 w-7 rounded-full border border-white/15 leading-none transition hover:border-cuerol">−</button>
+                  <span data-wqty="${p.id}" class="w-8 text-center text-sm font-bold">${qty}</span>
+                  <button type="button" data-wplus="${p.id}" aria-label="Agregar una unidad" class="h-7 w-7 rounded-full border border-white/15 leading-none transition hover:border-cuerol">+</button>
+                </div>
+              </div>
+              <div class="shrink-0 text-right">
+                <p class="font-semibold text-cuerol">${money(tPrice(p) * qty)}</p>
+                <button type="button" data-wremove="${p.id}" class="mt-2 text-xs text-slate3 underline underline-offset-4 hover:text-cuerol">Quitar</button>
+              </div>
+            </li>`).join('')}
+        </ul>
+        <dl class="mt-4 space-y-2 border-t border-white/10 pt-4 text-sm">
+          <div class="flex justify-between"><dt class="text-slate3">Subtotal lista</dt><dd>${money(sub)}</dd></div>
+          ${vol ? `<div class="flex justify-between"><dt class="text-slate3">Descuento por volumen (−${Math.round(vol * 100)}%)</dt><dd>−${money(volAmt)}</dd></div>` : ''}
+          <div class="flex justify-between"><dt class="text-slate3">Descuento por transferencia (−${Math.round(TERMS.transferOff * 100)}%)</dt><dd>−${money(trAmt)}</dd></div>
+          <div class="flex justify-between pt-1 text-base font-bold"><dt>Total a transferir (${u} unidades)</dt><dd class="text-cuerol">${money(total)}</dd></div>
+          <p class="text-right text-cuerol">Estás ahorrando ${money(saved)}</p>
+        </dl>
+        <div class="mt-6 flex flex-col gap-3">
+          <button id="cmodal-send" type="button" ${ok ? '' : 'disabled'} class="rounded-full bg-cuero px-6 py-3.5 text-sm font-bold text-ink transition hover:bg-cuerol disabled:cursor-not-allowed disabled:opacity-50">Contactar por WhatsApp con este pedido</button>
+          <button type="button" data-cclose class="rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-hueso transition hover:border-cuerol">Seguir comprando</button>
+          ${ok ? '' : `<p class="text-center text-xs text-slate3">Faltan ${MIN_UNITS - u} unidades para el pedido mínimo.</p>`}
+        </div>`;
+    }
+    function openCart() {
+      renderCart();
+      cmodal.classList.remove('hidden');
+      cmodal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCart() {
+      cmodal.classList.add('hidden');
+      cmodal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    cmodal.addEventListener('click', (e) => {
+      if (e.target === cmodal || e.target.closest('#cmodal-close') || e.target.closest('[data-cclose]')) { closeCart(); return; }
+      if (e.target.closest('#cmodal-send')) { window.open(waLink(wMessage()), '_blank', 'noopener'); return; }
+      const rm = e.target.closest('[data-wremove]');
+      if (rm) { wSet(rm.dataset.wremove, 0); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!pmodal.classList.contains('hidden')) closeDetail();
+      if (!cmodal.classList.contains('hidden')) closeCart();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-open-cart]')) { openCart(); return; }
+      const det = e.target.closest('[data-wdetail]');
+      if (det && !e.target.closest('button')) { openDetail(det.dataset.wdetail); return; }
+      const th = e.target.closest('[data-wthumb]');
+      if (th) { const main = $(`[data-wmain="${th.dataset.wthumb}"]`); if (main) main.src = th.dataset.src; return; }
+      const add = e.target.closest('[data-wadd10]');
+      if (add && !add.disabled) { const id = add.dataset.wadd10; wSet(id, wQty(id) + 10); return; }
+      const b = e.target.closest('[data-wminus],[data-wplus]');
+      if (!b || b.disabled) return;
+      const id = b.dataset.wminus || b.dataset.wplus;
+      wSet(id, wQty(id) + (b.dataset.wplus ? 1 : -1));
+    });
+    $('#wbar-send').addEventListener('click', () => window.open(waLink(wMessage()), '_blank', 'noopener'));
+
+    const cardHTML = (p, tag = '') => {
+      const imgs = (p.images && p.images.length ? p.images : [p.img]).filter(Boolean);
+      const hasPrice = !!p.wholesale;
+      const out = p.stock === 0;
+      const tp = hasPrice ? tPrice(p) : 0;
+      const hasSug = hasPrice && !!p.price;
+      const margin = hasSug ? Math.round((1 - tp / p.price) * 100) : 0;
+      const gain = hasSug ? p.price - tp : 0;
+      const priceLine = hasPrice
+        ? `<div class="mt-3 flex flex-wrap items-baseline gap-x-2">
+             <span class="font-serif text-xl text-cuerol sm:text-2xl">${money(tp)}</span>
+             <s class="text-sm text-slate5">${money(p.wholesale)}</s>
+           </div>
+           <p class="text-xs text-slate3">Precio por transferencia</p>`
+        : `<p class="mt-3 font-serif text-xl text-cuerol">Consultar precio</p>`;
+      const qty = hasPrice && !out ? `
+        <div class="mt-4 flex items-center justify-center gap-3 rounded-full border border-white/15 p-1 sm:justify-between">
+          <span class="hidden pl-3 text-sm text-slate3 sm:inline">Cantidad</span>
+          <div class="flex items-center gap-2">
+            <button type="button" data-wminus="${p.id}" aria-label="Quitar una unidad de ${esc(p.name)}" class="h-8 w-8 rounded-full border border-white/15 text-lg leading-none transition hover:border-cuerol disabled:opacity-30">−</button>
+            <span data-wqty="${p.id}" class="w-8 text-center font-bold" aria-live="polite">0</span>
+            <button type="button" data-wplus="${p.id}" aria-label="Agregar una unidad de ${esc(p.name)}" class="h-8 w-8 rounded-full border border-white/15 text-lg leading-none transition hover:border-cuerol disabled:opacity-30">+</button>
+          </div>
+        </div>` : (out ? `<p class="mt-4 text-sm text-slate5">Sin stock por ahora</p>` : '');
+      const addBtn = hasPrice && !out ? `
+        <button type="button" data-wadd10="${p.id}" aria-label="Agregar 10 unidades de ${esc(p.name)}"
+                class="mt-2 w-full rounded-full border border-cuero px-4 py-2 text-sm font-bold text-cuerol transition hover:bg-cuero hover:text-ink disabled:cursor-not-allowed disabled:opacity-40">
+          Agregar 10 u.
+        </button>` : '';
+      const details = '';
+      return `
+        <article data-wdetail="${p.id}" class="flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate9 transition hover:border-cuero/40">
+          <div class="relative">
+            <img data-wmain="${p.id}" src="${imgs[0]}" alt="${esc(p.name)}" class="aspect-[4/5] w-full bg-slate9 object-cover object-center">
+            ${tag ? `<span class="absolute left-2 top-2 whitespace-nowrap rounded-full bg-ink/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-cuerol backdrop-blur sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">${tag}</span>` : ''}
+          </div>
+          <div class="flex flex-1 flex-col p-3 sm:p-4">
+            <h4 class="font-serif text-base font-semibold leading-snug sm:text-xl">${esc(p.name)}</h4>
+            ${p.production ? `<p class="mt-1 text-xs text-slate3">Producción: ${esc(p.production)}</p>` : ''}
+            ${priceLine}
+            ${qty}
+            ${addBtn}
+            ${details}
+          </div>
+        </article>`;
+    };
+
+    function renderWholesale() {
+      const list = Products.all().filter((p) => !p.archived);
+      const tagOf = (p) => (p.id === 'mate-algarrobo-pintado' ? 'Más vendido' : p.id === 'cuchillo-trenzado-claro' ? 'Referencia' : '');
+      const cats = [...CAT_ORDER, ...list.map((p) => p.cat)].filter((c, i, a) => a.indexOf(c) === i);
+      const sections = cats.map((cat) => {
+        // El ranchero y el pintado van juntos: se ordenan por el precio del grupo y el pintado queda después
+        const famOf = (p) => (p.id.startsWith('mate-algarrobo') ? 'mate-algarrobo' : p.id);
+        const famPrice = (p) => Math.min(...list.filter((x) => famOf(x) === famOf(p)).map((x) => x.wholesale ?? Infinity));
+        const items = list.filter((p) => p.cat === cat)
+          .sort((a, b) => (famPrice(a) - famPrice(b))
+            || (famOf(a) === famOf(b) ? (a.id === 'mate-algarrobo-pintado') - (b.id === 'mate-algarrobo-pintado') : 0)
+            || ((a.wholesale ?? Infinity) - (b.wholesale ?? Infinity)));
+        if (!items.length) return '';
+        return `
+          <section class="mt-12">
+            <h3 class="text-center font-serif text-2xl font-semibold">${CAT_TITLES[cat] || catLabel(cat)}</h3>
+            <div class="mt-5 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">${items.map((p) => cardHTML(p, tagOf(p))).join('')}</div>
+          </section>`;
+      }).join('');
+
+      $('#wterms').innerHTML = `
+        <details class="group rounded-xl border border-white/10 bg-slate9/60 px-4 py-3">
+          <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-bold text-hueso">
+            <span>Descuentos por volumen y transferencia</span>
+            <span aria-hidden="true" class="text-lg leading-none text-cuerol transition group-open:rotate-45">+</span>
+          </summary>
+          <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            ${TERMS.tiers.slice().reverse().map((t) => `<div class="rounded-xl border border-white/10 bg-ink/40 p-2 text-center sm:p-3"><p class="text-[11px] text-slate3 sm:text-xs">Desde ${t.min} u.</p><p class="text-sm font-bold text-cuerol sm:text-base">−${Math.round(t.off * 100)}%</p></div>`).join('')}
+            <div class="rounded-xl border border-cuero/40 bg-cuero/10 p-2 text-center sm:p-3"><p class="text-[11px] text-slate3 sm:text-xs">Transferencia</p><p class="text-sm font-bold text-cuerol sm:text-base">−${Math.round(TERMS.transferOff * 100)}%</p></div>
+          </div>
+        </details>`;
+      $('#wholesale-grid').innerHTML = sections;
+      wPaint();
+      requestAnimationFrame(fitAll);
+    }
+
+    renderWholesale();
+    return { refresh() { renderWholesale(); } };
+  })();
+
+  /* ===================== INIT ===================== */
+  Products.subscribe(() => {
+    refreshBanner();
+    B2B.refresh();
+    if (Route.view === 'admin') Admin.render(false);
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  Router.init();
+  Products.fetchPublished();  Products.fetchPublished();
+  </script>
+</body>
+</html>
